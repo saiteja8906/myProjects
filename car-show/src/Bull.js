@@ -10,7 +10,7 @@ import { spoltLightColors } from "./utils/constants";
 export function Bull({ setColor1, setColor2 }) {
   const gltf = useLoader(
     GLTFLoader,
-    process.env.PUBLIC_URL + "models/Bull/scene.gltf"
+    process.env.PUBLIC_URL + "/models/Bull/scene.gltf"
   );
 
   const [isClicked, setIsClicked] = useState(false);

@@ -27,15 +27,16 @@ import { Stage } from "./Stage";
 import { useState } from "react";
 import { useEffect } from "react";
 import { spoltLightColors } from "./utils/constants";
+import Loader from "./utils/Loader";
 
 function CarShow() {
-  const [color1,setColor1] = useState([]);
-  const [color2,setColor2] = useState([]);
+  const [color1, setColor1] = useState([]);
+  const [color2, setColor2] = useState([]);
 
-  useEffect(()=>{
-    setColor1(spoltLightColors.color1)
-    setColor2(spoltLightColors.color2)
-  },[]);
+  useEffect(() => {
+    setColor1(spoltLightColors.color1);
+    setColor2(spoltLightColors.color2);
+  }, []);
 
   return (
     <>
@@ -49,12 +50,12 @@ function CarShow() {
         {(texture) => (
           <>
             <Environment map={texture} />
-            <Stage/>
+            {/* <Stage/> */}
             <Car />
-            <Urus/>
-            <Huracan/>
-            <Bull setColor1={setColor1} setColor2={setColor2}/>
-            <Revualto/>
+            <Urus />
+            <Huracan />
+            <Bull setColor1={setColor1} setColor2={setColor2} />
+            <Revualto />
           </>
         )}
       </CubeCamera>
@@ -103,11 +104,11 @@ function CarShow() {
 
 function App() {
   return (
-    <Suspense fallback={null}>
-      <Canvas shadows>
+    <Canvas shadows>
+      <Suspense fallback={<Loader />}>
         <CarShow />
-      </Canvas>
-    </Suspense>
+      </Suspense>
+    </Canvas>
   );
 }
 

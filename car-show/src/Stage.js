@@ -8,7 +8,7 @@ import { Mesh } from "three";
 export function Stage() {
   const gltf = useLoader(
     GLTFLoader,
-    process.env.PUBLIC_URL + "models/stage/scene.gltf"
+    process.env.PUBLIC_URL + "/models/stage/scene.gltf"
   );
   
   useEffect(() => {

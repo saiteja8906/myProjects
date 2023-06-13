@@ -10,15 +10,17 @@ import { useState } from "react";
 export function Revualto() {
   const gltf = useLoader(
     GLTFLoader,
-    process.env.PUBLIC_URL + "models/Revualto/scene.gltf"
+    process.env.PUBLIC_URL + "/models/Revualto/scene.gltf"
   );
 
   const [isClicked, setIsClicked] = useState(false);
 
   useEffect(() => {
     gltf.scene.scale.set(1, 1, 1);
-    gltf.scene.position.set(1.5, 0, 8);
-    // isClicked ? gltf.scene.rotateY(5) : gltf.scene.rotateY(-5);
+    isClicked
+      ? gltf.scene.position.set(1.5, 0.2, 8)
+      : gltf.scene.position.set(1.5, 0, 8);
+    isClicked ? gltf.scene.rotateY(5) : gltf.scene.rotateY(-5);
     gltf.scene.traverse((object) => {
       if (object instanceof Mesh) {
         object.castShadow = true;
@@ -26,7 +28,7 @@ export function Revualto() {
         object.material.envMapIntensity = 20;
       }
     });
-  }, [gltf,isClicked]);
+  }, [gltf, isClicked]);
 
   // useFrame((state, delta) => {
   //   let t = state.clock.getElapsedTime();
@@ -40,8 +42,25 @@ export function Revualto() {
 
   return (
     <>
-      <primitive object={gltf.scene} onClick={() => setIsClicked(!isClicked)}/>
-      {/* <Rings pos={[0,0,9]} scal={[1,1,1]}/> */}
+      {isClicked && (
+        <>
+          <mesh
+            scale={2.2}
+            position={[1.3, 0.3, 8]}
+            rotation={[-Math.PI / 2, 0, Math.PI / 2.5]}
+            castShadow
+          >
+            <ringGeometry args={[1.4, 1.5, 40]} />
+            <meshStandardMaterial
+              emissive={[1, 1, 1]}
+              color="white"
+              roughness={0.75}
+              envMapIntensity={0.15}
+            />
+          </mesh>
+        </>
+      )}
+      <primitive object={gltf.scene} onClick={() => setIsClicked(!isClicked)} />
     </>
   );
 }

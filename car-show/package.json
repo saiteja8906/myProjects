@@ -1,7 +1,7 @@
 {
   "name": "car-show",
   "version": "0.1.0",
-  "homepage": "https://saiteja8906.github.io/CAR-SHOW",
+  "homepage": "https://saiteja8906.github.io/myProjects",
   "private": true,
   "dependencies": {
     "@react-three/drei": "^9.4.2",
